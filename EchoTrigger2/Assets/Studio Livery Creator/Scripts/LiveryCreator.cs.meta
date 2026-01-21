@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4da7a39bf147c8b488d8b01d385f056e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201179
+  packageName: Studio Livery Creator
+  packageVersion: 1.2
+  assetPath: Assets/Studio Livery Creator/Scripts/LiveryCreator.cs
+  uploadId: 458724

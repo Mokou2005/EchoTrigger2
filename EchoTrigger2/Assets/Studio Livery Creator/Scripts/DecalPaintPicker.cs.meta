@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 2f1f9d9f4854dcc48bf15dc2ad0a834d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201179
+  packageName: Studio Livery Creator
+  packageVersion: 1.2
+  assetPath: Assets/Studio Livery Creator/Scripts/DecalPaintPicker.cs
+  uploadId: 458724

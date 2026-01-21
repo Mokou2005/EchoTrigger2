@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 7c8607cdf9daabe479c67f7e00c96f63
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201179
+  packageName: Studio Livery Creator
+  packageVersion: 1.2
+  assetPath: Assets/Studio Livery Creator/Scripts/SwitchVehicle.cs
+  uploadId: 458724

@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7100368355163807231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6423566927881740169}
+  - component: {fileID: 8172385871036176145}
+  - component: {fileID: 8870978551837190595}
+  m_Layer: 0
+  m_Name: "\u30B9\u30DD\u30FC\u30F3\u5730\u70B9Call"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6423566927881740169
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7100368355163807231}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.031501155, z: -0, w: 0.99950373}
+  m_LocalPosition: {x: -25.640001, y: 2.7, z: 12.68}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 3.61, z: 0}
+--- !u!114 &8172385871036176145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7100368355163807231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9826f7bbfbfcc734a8e7802761f0a9d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UnitType: 2
+  m_Body: {fileID: 390710742360739429, guid: be0096da9196a104ca5424dab89cf36a, type: 3}
+  m_Player: {fileID: 0}
+  m_Ainame:
+  - m_Name: "\u30B9\u30FC\u30C4"
+    AIName:
+    - SuitIdle
+    - SuitMove
+    - SuitSearch
+    - SuitAttack
+  - m_Name: "\u8B66\u5099\u54E1"
+    AIName:
+    - SecurityIdle
+    - SecurityMove
+    - SecuritySearch
+    - SecurityAttack
+  - m_Name: Dog
+    AIName:
+    - DogIdle
+    - DogMove
+    - DogSearch
+    - DogAttack
+--- !u!114 &8870978551837190595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7100368355163807231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d384eed5c3ed6f438c94e681bf6239c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_a: {fileID: 7100368355163807231}

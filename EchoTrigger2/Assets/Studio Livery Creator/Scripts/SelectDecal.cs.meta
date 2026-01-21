@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: d2f9777f8e4cd75438b984fc64ab51b1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201179
+  packageName: Studio Livery Creator
+  packageVersion: 1.2
+  assetPath: Assets/Studio Livery Creator/Scripts/SelectDecal.cs
+  uploadId: 458724

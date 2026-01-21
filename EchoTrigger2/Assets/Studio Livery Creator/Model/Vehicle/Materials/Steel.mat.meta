@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: af4aecc73d0e6794cb05a154351bd858
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201179
+  packageName: Studio Livery Creator
+  packageVersion: 1.2
+  assetPath: Assets/Studio Livery Creator/Model/Vehicle/Materials/Steel.mat
+  uploadId: 458724

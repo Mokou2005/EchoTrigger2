@@ -11,4 +11,6 @@ UserSettings
 *.sln
 Build
 
-/EchoTrigger2/Assets
+
+/EchoTrigger2/Assets/ActionSTG
+/EchoTrigger2/Assets/StoreAsset
