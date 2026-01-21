@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 82f30180d911a804089f33d1878ee980
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 158913
+  packageName: Real Blood
+  packageVersion: 1.3
+  assetPath: Assets/Knife/Real Blood/Scripts/Decals/CharacterDamagePainter.cs
+  uploadId: 628033

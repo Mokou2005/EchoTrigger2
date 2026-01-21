@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 9d41991740780dc42813c37e87dfd914
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: -103
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 158913
+  packageName: Real Blood
+  packageVersion: 1.3
+  assetPath: Assets/Knife/Real Blood/Scripts/Spawner.cs
+  uploadId: 628033

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 1a6b64049fcb3164fa04918da1246246
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 158913
+  packageName: Real Blood
+  packageVersion: 1.3
+  assetPath: Assets/Knife/Real Blood/Scripts/Editor/ConnectParentJointMenuItem.cs
+  uploadId: 628033

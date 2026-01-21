@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 341c3d995aea6a84ab9c766de04d21c9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 158913
+  packageName: Real Blood
+  packageVersion: 1.3
+  assetPath: Assets/Knife/Real Blood/Scripts/LiquidSurface/LiquidSurface.cs
+  uploadId: 628033
