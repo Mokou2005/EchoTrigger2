@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e702d54b9c2d0e4690c334781f3ef0e, type: 3}
+  m_Name: Quest2
+  m_EditorClassIdentifier: 
+  m_QuestName: "\u585E\u304C\u308C\u3066\u3044\u308B\u30C9\u30A2\u306E\u9375\u3092\u63A2\u305B"
+  m_TitleImage: {fileID: 21300000, guid: 1a1dc6150637d254fbff2d50236c6f7c, type: 3}
+  m_DescriptionImage: {fileID: 21300000, guid: 7691b5bdd40441440a79e27ccb8ddb0e, type: 3}
+  m_Item: "\u30D6\u30EB\u30FC\u30AD\u30FC"
+  m_NextQuest: {fileID: 11400000, guid: 75cd83dcd7589f842aa55985a736d81c, type: 2}
