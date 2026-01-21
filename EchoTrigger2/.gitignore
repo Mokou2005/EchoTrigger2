@@ -1,0 +1,11 @@
+Echo_Trigger/URP Studio Livery Creator.unitypackage
+Echo_Trigger/.vs
+Echo_Trigger/Library
+Echo_Trigger/Library/APIUpdater/ConfigurationCache/
+Echo_Trigger/Logs
+Echo_Trigger/obj
+Echo_Trigger/Temp
+Echo_Trigger/UserSettings
+Echo_Trigger/.vsconfig
+Echo_Trigger/*.csproj
+Echo_Trigger/*.sln
