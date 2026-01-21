@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: fdb7d0167c2048440bfb09e723e7e2a1
+timeCreated: 1502757114
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 112442
+  packageName: Alchemist House
+  packageVersion: 1.0
+  assetPath: "Assets/StoreAsset/\u30DE\u30C3\u30D7/BK_AlchemistHouse/Prefabs/Items/\u5B9F\u9A13\u5BFE/DragonSkull.prefab"
+  uploadId: 248818

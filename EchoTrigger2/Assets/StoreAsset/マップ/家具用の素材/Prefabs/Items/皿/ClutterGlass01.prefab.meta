@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5ca4a76b446086a44847679204ffa344
+timeCreated: 1502929887
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 112442
+  packageName: Alchemist House
+  packageVersion: 1.0
+  assetPath: "Assets/StoreAsset/\u30DE\u30C3\u30D7/BK_AlchemistHouse/Prefabs/Items/\u76BF/ClutterGlass01.prefab"
+  uploadId: 248818

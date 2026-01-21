@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 0cfbd6f426c92ad4896fbd4648e2e01b
+timeCreated: 1508116099
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 112442
+  packageName: Alchemist House
+  packageVersion: 1.0
+  assetPath: "Assets/StoreAsset/\u30DE\u30C3\u30D7/BK_AlchemistHouse/Prefabs/Items/\u5B9F\u9A13\u5BFE/Skull01b.prefab"
+  uploadId: 248818
