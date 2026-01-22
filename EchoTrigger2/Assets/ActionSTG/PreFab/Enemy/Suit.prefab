@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Team: Enemy
   m_Hp: 3
   m_MaxHp: 3
-  m_Die: {fileID: 0}
+  m_Die: {fileID: 9180329384354377866}
   m_HpUI: {fileID: 0}
   m_IsDie: 0
 --- !u!195 &3999917074233230828

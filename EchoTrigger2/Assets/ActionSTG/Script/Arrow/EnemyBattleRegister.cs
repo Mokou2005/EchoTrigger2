@@ -1,16 +1,16 @@
 using UnityEngine;
-
 /// <summary>
 /// 敵をBattleManagerに登録するスクリプト
 /// 警戒レベルに関係なく常に表示される
 /// </summary>
 public class EnemyBattleRegister : MonoBehaviour
 {
-    /// <summary>
-    /// BattleManagerに登録されているか
-    /// </summary>
+    //BattleManagerに登録されているか
     bool m_IsRegistered = false;
 
+    /// <summary>
+    /// 開始時に関数へ
+    /// </summary>
     void Start()
     {
         // 開始時に即座にBattleManagerに登録

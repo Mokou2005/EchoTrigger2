@@ -92,7 +92,7 @@ public class Sensor : MonoBehaviour
         m_LostTimer = 0f;
         m_AlertLevel.m_AttackMode = false;
         // 警戒度もリセット
-        m_AlertLevel.m_currentLevel = 0f;  
+        m_AlertLevel.m_CurrentLevel = 0f;  
         
         if (m_EnemyAI != null)
         {

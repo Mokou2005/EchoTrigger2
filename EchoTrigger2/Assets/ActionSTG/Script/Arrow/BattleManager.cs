@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 /// <summary>
 /// 敵認識システム
 /// </summary>
 public class BattleManager : MonoBehaviour
 {
+    [Header("BattleManagerをいつでも使える用に可")]
     public static BattleManager m_BattleInstance;
 
     [Header("アクティブ敵リスト")]
@@ -17,6 +17,9 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     public bool m_IsCombat => m_ActiveEnemies.Count > 0;
 
+    /// <summary>
+    /// 開始
+    /// </summary>
     private void Awake()
     {
         m_BattleInstance = this;

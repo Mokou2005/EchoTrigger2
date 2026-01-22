@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
 /// <summary>
 /// 敵方向UI表示機能
 /// プレイヤーが指定キーを押している間だけ敵の方向を表示
