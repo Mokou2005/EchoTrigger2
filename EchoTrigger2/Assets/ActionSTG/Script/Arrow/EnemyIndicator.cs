@@ -129,7 +129,7 @@ public class EnemyIndicator : MonoBehaviour
         else
         {
             // クールタイム完了済み（0）。キー入力を待つ
-            if (Input.GetKeyDown(m_ShowIndicatorKey))
+            if (!Options.m_IsOptionsOpen && Input.GetKeyDown(m_ShowIndicatorKey))
             {
                 Debug.Log("アビリティ発動！");
                 m_IsActive = true;

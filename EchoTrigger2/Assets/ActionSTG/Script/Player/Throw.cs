@@ -2,26 +2,26 @@ using UnityEngine;
 
 public class Throw : MonoBehaviour
 {
-    [Header("i©“®jƒAƒjƒ[ƒ^[")]
+    [Header("ï¼ˆè‡ªå‹•ï¼‰ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚¿ãƒ¼")]
     [SerializeField] private Animator m_animator;
-    [Header("ItemCount‚ğƒAƒ^ƒbƒ`")]
+    [Header("ItemCountã‚’ã‚¢ã‚¿ãƒƒãƒ")]
     public ItemCount m_ItemCount;
-    [Header("“Š‚°‚éSE")]
+    [Header("æŠ•ã’ã‚‹SE")]
     [SerializeField] private AudioClip m_ThrowSE;
-    [Header("\‚¦‚éSE")]
+    [Header("æ§‹ãˆã‚‹SE")]
     [SerializeField] private AudioClip m_BraceSE;
-    [Header("“Š‚°‚éÎ")]
+    [Header("æŠ•ã’ã‚‹çŸ³")]
     public GameObject m_ThrowStone;
-    [Header("oŒ»‚·‚éêŠ")]
+    [Header("å‡ºç¾ã™ã‚‹å ´æ‰€")]
     public Transform m_SpawnStone;
-    [Header("•úo‚·‚éŠp“x")]
+    [Header("æ”¾å‡ºã™ã‚‹è§’åº¦")]
     public float m_ThrowAngle=60f;
     [SerializeField]private AudioSource m_AudioSource;
-    //\‚¦‚½ó‘Ô‚©‚Ç‚¤‚©
+    //æ§‹ãˆãŸçŠ¶æ…‹ã‹ã©ã†ã‹
     [SerializeField] private bool m_IsBrace = false;
-    //“Š‚°‚½ƒtƒ‰ƒO
+    //æŠ•ã’ãŸãƒ•ãƒ©ã‚°
     [SerializeField] public bool m_IsThrow = false;
-    //è‚É‚Á‚Ä‚¢‚éÎ‚ğ•Û‘¶
+    //æ‰‹ã«æŒã£ã¦ã„ã‚‹çŸ³ã‚’ä¿å­˜
     private GameObject m_HoldingStone = null;
 
 
@@ -32,12 +32,12 @@ public class Throw : MonoBehaviour
             m_AudioSource = GetComponent<AudioSource>();
             if (m_AudioSource==null)
             {
-                Debug.LogError("AudioSource‚ªƒAƒ^ƒbƒ`‚³‚ê‚Ä‚Ü‚¹‚ñ");
+                Debug.LogError("AudioSourceãŒã‚¢ã‚¿ãƒƒãƒã•ã‚Œã¦ã¾ã›ã‚“");
             }
         }
         if (m_ItemCount == null)
         {
-            Debug.LogError("ItemCount‚Ìscript‚ª“ü‚Á‚Ä‚Ü‚¹‚ñB");
+            Debug.LogError("ItemCountã®scriptãŒå…¥ã£ã¦ã¾ã›ã‚“ã€‚");
         }
 
         if (m_animator == null)
@@ -45,40 +45,43 @@ public class Throw : MonoBehaviour
             m_animator = GetComponent<Animator>();
             if (m_animator == null)
             {
-                Debug.LogError("ƒAƒjƒ[ƒ^[‚ª“ü‚Á‚Ä‚Ü‚¹‚ñB");
+                Debug.LogError("ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚¿ãƒ¼ãŒå…¥ã£ã¦ã¾ã›ã‚“ã€‚");
             }
         }
     }
 
     private void Update()
     {
+        //ã‚ªãƒ—ã‚·ãƒ§ãƒ³ä¸­ã¯æ“ä½œç¦æ­¢
+        if (Options.m_IsOptionsOpen)
+            return;
 
-        // Qƒ{ƒ^ƒ“‚Í\‚¦
+        // Qãƒœã‚¿ãƒ³ã¯æ§‹ãˆ
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            //“Š‚°‚éƒAƒCƒeƒ€‚ª‚ ‚é‚È‚ç
+            //æŠ•ã’ã‚‹ã‚¢ã‚¤ãƒ†ãƒ ãŒã‚ã‚‹ãªã‚‰
             if (m_ItemCount.m_ItemCount > 0)
             {
                 m_IsBrace = !m_IsBrace;
                 if (m_IsBrace)
                 {
-                    Debug.Log("\‚¦‚½");
+                    Debug.Log("æ§‹ãˆãŸ");
                     m_AudioSource.PlayOneShot(m_BraceSE);
                     m_animator.SetBool("Brace", m_IsBrace);
                     m_IsThrow = true;
-                    // ‚¿Î‚ğ¶¬i‚Ü‚¾‚Á‚Ä‚¢‚È‚¯‚ê‚Îj
+                    // æŒã¡çŸ³ã‚’ç”Ÿæˆï¼ˆã¾ã æŒã£ã¦ã„ãªã‘ã‚Œã°ï¼‰
                     if (m_HoldingStone == null)
                     {
                         m_HoldingStone = Instantiate(m_ThrowStone, m_SpawnStone.position, m_SpawnStone.rotation);
-                        //m_HoldingStone‚ÉƒRƒ“ƒ|[ƒlƒ“ƒg‚µ‚Ä‚È‚©‚Á‚½‚ç
+                        //m_HoldingStoneã«ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã—ã¦ãªã‹ã£ãŸã‚‰
                         if (m_HoldingStone.GetComponent<MasterEnemySystem>()==null)
                         {
                             m_HoldingStone.AddComponent<MasterEnemySystem>();
-                            Debug.Log("Stone ‚É MasterEnemySystem ‚ğ©“®’Ç‰Á‚µ‚Ü‚µ‚½I");
+                            Debug.Log("Stone ã« MasterEnemySystem ã‚’è‡ªå‹•è¿½åŠ ã—ã¾ã—ãŸï¼");
                         }
-                        // è‚ÌˆÊ’u‚Ìq‚É‚·‚éiˆÊ’u‚¸‚ê–h~j
+                        // æ‰‹ã®ä½ç½®ã®å­ã«ã™ã‚‹ï¼ˆä½ç½®ãšã‚Œé˜²æ­¢ï¼‰
                         m_HoldingStone.transform.SetParent(m_SpawnStone);
-                        // d—ÍƒIƒt‚É‚µ‚Ä—‚¿‚È‚¢‚æ‚¤‚É
+                        // é‡åŠ›ã‚ªãƒ•ã«ã—ã¦è½ã¡ãªã„ã‚ˆã†ã«
                         var rd = m_HoldingStone.GetComponent<Rigidbody>();
                         if (rd != null)
                         {
@@ -86,14 +89,14 @@ public class Throw : MonoBehaviour
                         }
                         else
                         {
-                            Debug.LogError("Î‚ÉRigidbody‚ª‚Â‚¢‚Ä‚Ü‚¹‚ñB");
+                            Debug.LogError("çŸ³ã«RigidbodyãŒã¤ã„ã¦ã¾ã›ã‚“ã€‚");
                         }
                         
                     }
                 }
                 else
                 {                  
-                    Debug.Log("‚µ‚Ü‚Á‚½");
+                    Debug.Log("ã—ã¾ã£ãŸ");
                     m_AudioSource.PlayOneShot(m_BraceSE);
                     m_animator.SetBool("Brace", m_IsBrace);
                     m_IsThrow = false;
@@ -102,57 +105,57 @@ public class Throw : MonoBehaviour
             }
            
         }
-        // ¶ƒNƒŠƒbƒN‚Å“Š‚°‚é
+        // å·¦ã‚¯ãƒªãƒƒã‚¯ã§æŠ•ã’ã‚‹
         if (Input.GetMouseButtonDown(0) && m_IsThrow)
         {
-            Debug.Log("“Š‚°‚½");
+            Debug.Log("æŠ•ã’ãŸ");
             m_AudioSource.PlayOneShot(m_ThrowSE);
             m_IsBrace = false;
-            // Throw ƒAƒjƒ[ƒVƒ‡ƒ“Ä¶
+            // Throw ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å†ç”Ÿ
             m_animator.SetTrigger("Throw");
-            //ƒAƒCƒeƒ€Á”ï
+            //ã‚¢ã‚¤ãƒ†ãƒ æ¶ˆè²»
             m_ItemCount.m_UseItem = true;
             m_ItemCount.UseStoneItem();
         }
 
     }
-    //“Š‚°‚é‚Ì‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚Å§Œä
+    //æŠ•ã’ã‚‹ã®æ™‚ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã§åˆ¶å¾¡
     void ThrowShoot()
     {
-        // è‚©‚ç—£‚·
+        // æ‰‹ã‹ã‚‰é›¢ã™
         m_HoldingStone.transform.SetParent(null);
-        //Rigidbody‚ğæ“¾
+        //Rigidbodyã‚’å–å¾—
         Rigidbody rd= m_HoldingStone.GetComponent<Rigidbody>();
-        //Rigidbody‚ª‚Â‚¢‚Ä‚¢‚È‚¯‚ê‚Î
+        //RigidbodyãŒã¤ã„ã¦ã„ãªã‘ã‚Œã°
         if (rd!=null)
         {
-            //è‚©‚ç—£‚·‚æ‚¤‚É
+            //æ‰‹ã‹ã‚‰é›¢ã™ã‚ˆã†ã«
             rd.isKinematic=false;
-            //ƒvƒŒƒCƒ„[‚ªŒü‚¢‚Ä‚é•ûŒü‚ÉŠp“x‚ğ‹‚ß‚é
+            //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒå‘ã„ã¦ã‚‹æ–¹å‘ã«è§’åº¦ã‚’æ±‚ã‚ã‚‹
             Vector3 dir=Quaternion.AngleAxis(m_ThrowAngle,transform.right*-1) * transform.forward;
-            //“Š‚°‚é—Í
+            //æŠ•ã’ã‚‹åŠ›
             float throwPowar = 10f;           
-            //—Í‚ğ‰Á‚¦‚é
+            //åŠ›ã‚’åŠ ãˆã‚‹
             rd.AddForce(dir * throwPowar, ForceMode.Impulse);
-            #region@ForceMode.Impulse‚ÌˆÓ–¡
-            //ˆêu‚¾‚¯—Í‚ğ‰Á‚¦‚ÄA‚»‚ÌuŠÔ‚ÉRigidbody ‚Ì‘¬“x‚ğ•Ï‚¦‚é
+            #regionã€€ForceMode.Impulseã®æ„å‘³
+            //ä¸€ç¬ã ã‘åŠ›ã‚’åŠ ãˆã¦ã€ãã®ç¬é–“ã«Rigidbody ã®é€Ÿåº¦ã‚’å¤‰ãˆã‚‹
             #endregion
         }
         else
         {
-            Debug.LogError("Î‚ÉRigidbody‚ª‚Â‚¢‚Ä‚Ü‚¹‚ñB");
+            Debug.LogError("çŸ³ã«RigidbodyãŒã¤ã„ã¦ã¾ã›ã‚“ã€‚");
         }
-        //“Š‚°‚½Œã‚V•bŒãÁ‚·
+        //æŠ•ã’ãŸå¾Œï¼—ç§’å¾Œæ¶ˆã™
         Destroy(m_HoldingStone, 7f);
-        // “Š‚°‚½‚Ì‚Åè‚ÌÎ‚ğƒŠƒZƒbƒg
+        // æŠ•ã’ãŸã®ã§æ‰‹ã®çŸ³ã‚’ãƒªã‚»ãƒƒãƒˆ
         m_HoldingStone = null;
     }
-    //ƒAƒjƒ[ƒVƒ‡ƒ“ƒCƒxƒ“ƒg‚Å§Œä
+    //ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚¤ãƒ™ãƒ³ãƒˆã§åˆ¶å¾¡
     void ThrowEnd()
     {
         m_IsThrow = false;
         m_animator.SetBool("Brace", false);
-        // \‚¦‰ğœ ¨ è‚ÌÎ‚ğÁ‚·
+        // æ§‹ãˆè§£é™¤ â†’ æ‰‹ã®çŸ³ã‚’æ¶ˆã™
         if (m_HoldingStone != null)
         {
             Destroy(m_HoldingStone);

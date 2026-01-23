@@ -64,7 +64,9 @@ public class PlayerAttack : MonoBehaviour
     [System.Obsolete]
     void Update()
     {
-
+        //オプション中は操作禁止
+        if (Options.m_IsOptionsOpen)
+            return;
 
         //投げる構えをしていなくマウスを押したら発射
         if (Input.GetMouseButtonUp(0)&&!m_throw.m_IsThrow )

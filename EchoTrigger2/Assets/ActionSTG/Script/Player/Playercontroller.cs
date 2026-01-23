@@ -35,6 +35,9 @@ public class Playercontroller : MonoBehaviour
 
     private void Update()
     {
+        //オプション中は操作禁止
+        if (Options.m_IsOptionsOpen)
+            return;
         //Shiftキーを長押しすると
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -54,6 +57,9 @@ public class Playercontroller : MonoBehaviour
     }
     void FixedUpdate()
     {
+        //オプション中は操作禁止
+        if (Options.m_IsOptionsOpen)
+            return;
         //しゃがみ中は移動禁止
         if (Crouching.m_Crouching)
             return;

@@ -33,6 +33,9 @@ public class CMRSet : MonoBehaviour
     }
     void LateUpdate()
     {
+        //オプション中は操作禁止
+        if (Options.m_IsOptionsOpen)
+            return;
 
         if (m_CMRBase)
         {
