@@ -38,22 +38,24 @@ public class Playercontroller : MonoBehaviour
         //オプション中は操作禁止
         if (Options.m_IsOptionsOpen)
             return;
-        //Shiftキーを長押しすると
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        
+        //移動入力があるかどうか
+        bool isMoving = Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1f || Mathf.Abs(Input.GetAxis("Vertical")) > 0.1f;
+        
+        //Shiftキーを押しているかどうか
+        bool isShiftPressed = Input.GetKey(KeyCode.LeftShift);
+        
+        //Shiftキーを押しながら移動しているときだけ走る
+        if (isShiftPressed && isMoving)
         {
-            //スピードが上がる
             moveSpeed = 4f;
-            m_Animator.SetBool("Run",true);
-           
+            m_Animator.SetBool("Run", true);
         }
-        //Shiftキーを離すと
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        else
         {
-            //スピードがもとに戻る
             moveSpeed = 2f;
             m_Animator.SetBool("Run", false);
         }
-
     }
     void FixedUpdate()
     {

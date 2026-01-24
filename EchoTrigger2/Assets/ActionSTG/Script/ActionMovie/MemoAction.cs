@@ -2,57 +2,57 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
 /// <summary>
-/// ƒƒ‚‚ğŒ©I‚í‚Á‚½‚Æ‚«‚Ìƒ€[ƒrİ’è
+/// ãƒ¡ãƒ¢ã‚’è¦‹çµ‚ã‚ã£ãŸã¨ãã®ãƒ ãƒ¼ãƒ“è¨­å®š
 /// </summary>
 public class MemoAction : MonoBehaviour
 {
-    [Header("Director‚ğƒAƒ^ƒbƒ`"),SerializeField]
+    [Header("Directorã‚’ã‚¢ã‚¿ãƒƒãƒ"),SerializeField]
     private PlayableDirector m_TimeLineDirector;
 
-    [Header("ƒ[ƒv‚·‚éˆÊ’u"),SerializeField]
+    [Header("ãƒ¯ãƒ¼ãƒ—ã™ã‚‹ä½ç½®"),SerializeField]
     private Transform m_WarpPoint;
 
-    [Header("ƒvƒŒƒCƒ„["), SerializeField]
+    [Header("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼"), SerializeField]
     private GameObject m_PlayerObject;
 
-    [Tooltip("MovieCameraƒAƒ^ƒbƒ`iƒ€[ƒr‚ğ—¬‚·•ûj"), SerializeField]
+    [Tooltip("MovieCameraã‚¢ã‚¿ãƒƒãƒï¼ˆãƒ ãƒ¼ãƒ“ã‚’æµã™æ–¹ï¼‰"), SerializeField]
     private GameObject m_MovieCameraObject;
 
-    [Header("Canvas‘S‚ÄƒAƒ^ƒbƒ`"), SerializeField]
+    [Header("Canvaså…¨ã¦ã‚¢ã‚¿ãƒƒãƒ"), SerializeField]
     private GameObject m_CanvasObject;
 
-    //ƒtƒ‰ƒO
-    // ƒGƒŠƒA“à‚É‚¢‚é‚©
+    //ãƒ•ãƒ©ã‚°
+    // ã‚¨ãƒªã‚¢å†…ã«ã„ã‚‹ã‹
     private bool m_IsPlayerInArea = false;
-    // ƒƒ‚‚ğˆê“xŠJ‚¢‚½‚©
+    // ãƒ¡ãƒ¢ã‚’ä¸€åº¦é–‹ã„ãŸã‹
     private bool m_IsMemoOpened = false;
-    // ƒ€[ƒr[Ä¶Ï‚İ‚©
+    // ãƒ ãƒ¼ãƒ“ãƒ¼å†ç”Ÿæ¸ˆã¿ã‹
     private bool m_HasPlayed = false;     
 
     /// <summary>
-    /// XV
+    /// æ›´æ–°
     /// </summary>
     private void Update()
     {
-        //ƒGƒŠƒA‚É“ü‚Á‚Ä‚È‚¢‚©‚Ü‚½‚Íƒ€[ƒrÏ‚İ‚¶‚á‚È‚¯‚ê‚Îˆ—‚µ‚È‚¢
+        //ã‚¨ãƒªã‚¢ã«å…¥ã£ã¦ãªã„ã‹ã¾ãŸã¯ãƒ ãƒ¼ãƒ“æ¸ˆã¿ã˜ã‚ƒãªã‘ã‚Œã°å‡¦ç†ã—ãªã„
         if (!m_IsPlayerInArea || m_HasPlayed) return;
 
         if (Input.GetKeyDown(KeyCode.E))
         {
             m_IsMemoOpened = true;
-            Debug.Log("MemoAction: EƒL[ŒŸ’m - ƒƒ‚‚ğŠJ‚¢‚½‚Æ”F¯");
+            Debug.Log("MemoAction: Eã‚­ãƒ¼æ¤œçŸ¥ - ãƒ¡ãƒ¢ã‚’é–‹ã„ãŸã¨èªè­˜");
         }
 
         if (m_IsMemoOpened && Input.GetKeyDown(KeyCode.Tab))
         {
-            Debug.Log("MemoAction: TabƒL[ŒŸ’m - ƒ€[ƒr[ŠJn‚µ‚Ü‚·");
+            Debug.Log("MemoAction: Tabã‚­ãƒ¼æ¤œçŸ¥ - ãƒ ãƒ¼ãƒ“ãƒ¼é–‹å§‹ã—ã¾ã™");
             m_HasPlayed = true;
             StartCoroutine(PlayMovieAndWarp());
         }
     }
 
     /// <summary>
-    /// ƒGƒŠƒA‚É“ü‚Á‚½‚çƒtƒ‰ƒOƒIƒ“
+    /// ã‚¨ãƒªã‚¢ã«å…¥ã£ãŸã‚‰ãƒ•ãƒ©ã‚°ã‚ªãƒ³
     /// </summary>
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
@@ -65,7 +65,7 @@ public class MemoAction : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒGƒŠƒA‚ğ‚Å‚½‚çƒtƒ‰ƒOƒIƒt
+    /// ã‚¨ãƒªã‚¢ã‚’ã§ãŸã‚‰ãƒ•ãƒ©ã‚°ã‚ªãƒ•
     /// </summary>
     /// <param name="other"></param>
     private void OnTriggerExit(Collider other)
@@ -78,29 +78,29 @@ public class MemoAction : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒ€[ƒr‚Ìˆ—AƒIƒuƒWƒFƒNƒg‚Ì•\¦A”ñ•\¦‚Ìˆ—
+    /// ãƒ ãƒ¼ãƒ“ã®å‡¦ç†ã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¡¨ç¤ºã€éè¡¨ç¤ºã®å‡¦ç†
     /// </summary>
     /// <returns></returns>
     IEnumerator PlayMovieAndWarp()
     {
         yield return null;
 
-        // ƒƒ‚Á‚·
+        // ãƒ¡ãƒ¢æ¶ˆã™
         var mesh = GetComponent<MeshRenderer>();
         if (mesh != null) mesh.enabled = false;
         var col = GetComponent<Collider>();
         if (col != null) col.enabled = false;
 
-        Debug.Log("ƒ€[ƒr[ŠJn");
+        Debug.Log("ãƒ ãƒ¼ãƒ“ãƒ¼é–‹å§‹");
 
-        //ƒvƒŒƒCƒ„[‚ÌŒ©‚½–Ú‚ğÁ‚·iƒŒƒ“ƒ_ƒ‰[‚ğj
+        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®è¦‹ãŸç›®ã‚’æ¶ˆã™ï¼ˆãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã‚’ï¼‰
         Renderer[] playerRenderers = m_PlayerObject.GetComponentsInChildren<Renderer>();
         foreach (var r in playerRenderers)
         {
             r.enabled = false;
         }
 
-        //UIiƒLƒƒƒ“ƒoƒXj‚ÌŒ©‚½–Ú‚ğÁ‚·
+        //UIï¼ˆã‚­ãƒ£ãƒ³ãƒã‚¹ï¼‰ã®è¦‹ãŸç›®ã‚’æ¶ˆã™
         Canvas canvasComp = null;
         if (m_CanvasObject != null)
         {
@@ -111,17 +111,28 @@ public class MemoAction : MonoBehaviour
             }
         }
 
-        //ƒ€[ƒr[ƒJƒƒ‰ON
+        //ãƒ ãƒ¼ãƒ“ãƒ¼ã‚«ãƒ¡ãƒ©ON
         if (m_MovieCameraObject != null)
         {
             m_MovieCameraObject.SetActive(true);
         }
 
-        //TimelineÄ¶
+        //Timelineå†ç”Ÿ
         if (m_TimeLineDirector != null)
         {
+            bool isTimelineFinished = false;
+            
+            // ã‚¿ã‚¤ãƒ ãƒ©ã‚¤ãƒ³çµ‚äº†æ™‚ã®ã‚³ãƒ¼ãƒ«ãƒãƒƒã‚¯ã‚’è¨­å®š
+            m_TimeLineDirector.stopped += (director) => isTimelineFinished = true;
+            
             m_TimeLineDirector.Play();
-            yield return new WaitForSeconds((float)m_TimeLineDirector.duration);
+            
+            // ã‚¿ã‚¤ãƒ ãƒ©ã‚¤ãƒ³ãŒçµ‚äº†ã™ã‚‹ã¾ã§å¾…ã¤
+            while (!isTimelineFinished)
+            {
+                yield return null;
+            }
+            
             m_TimeLineDirector.Stop();
         }
         else
@@ -129,13 +140,13 @@ public class MemoAction : MonoBehaviour
             yield return new WaitForSeconds(2.0f);
         }
 
-        // ƒ€[ƒr[ƒJƒƒ‰OFF
+        // ãƒ ãƒ¼ãƒ“ãƒ¼ã‚«ãƒ¡ãƒ©OFF
         if (m_MovieCameraObject != null)
         {
             m_MovieCameraObject.SetActive(false);
         }
 
-        // ƒ[ƒvˆ—
+        // ãƒ¯ãƒ¼ãƒ—å‡¦ç†
         CharacterController cc = m_PlayerObject.GetComponent<CharacterController>();
         if (cc != null) cc.enabled = false;
 
@@ -144,18 +155,18 @@ public class MemoAction : MonoBehaviour
 
         if (cc != null) cc.enabled = true;
 
-        // ƒvƒŒƒCƒ„[‚ÌŒ©‚½–Ú‚ğŒ³‚É–ß‚·
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®è¦‹ãŸç›®ã‚’å…ƒã«æˆ»ã™
         foreach (var r in playerRenderers)
         {
             r.enabled = true;
         }
 
-        //UIiƒLƒƒƒ“ƒoƒXj‚ÌŒ©‚½–Ú‚ğŒ³‚É–ß‚·
+        //UIï¼ˆã‚­ãƒ£ãƒ³ãƒã‚¹ï¼‰ã®è¦‹ãŸç›®ã‚’å…ƒã«æˆ»ã™
         if (canvasComp != null)
         {
             canvasComp.enabled = true; 
         }
 
-        Debug.Log("ƒ[ƒvŠ®—¹EƒJƒƒ‰•œ‹A");
+        Debug.Log("ãƒ¯ãƒ¼ãƒ—å®Œäº†ãƒ»ã‚«ãƒ¡ãƒ©å¾©å¸°");
     }
 }
