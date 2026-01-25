@@ -40,7 +40,7 @@ public class EnemyIndicator : MonoBehaviour
     float m_Radius = 350;
 
     [Header("インジケーター表示キー"), SerializeField]
-    KeyCode m_ShowIndicatorKey = KeyCode.Tab;
+    KeyCode m_ShowIndicatorKey = KeyCode.G;
 
     [Header("アビリティのクールタイム"), SerializeField]
     private float m_LookAbilityCoolingTime = 60f;
@@ -223,49 +223,35 @@ public class EnemyIndicator : MonoBehaviour
             // 敵が既に破棄されている場合はスキップ
             if (enemy == null || arrow == null) continue;
 
-            // 3D空間の敵座標をスクリーン座標（ピクセル）に変換
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(enemy.position);
-
-            // 敵が画面外にいるかどうか判定
-            bool isOffScreen = screenPos.z < 0 || screenPos.x < 0 || screenPos.x > Screen.width || screenPos.y < 0 || screenPos.y > Screen.height;
-
             // プレイヤーと敵の距離を計算（メートル単位）
             float distance = Vector3.Distance(m_Player.position, enemy.position);
 
-            // 画面外なら表示
-            if (isOffScreen)
+            // 360度すべての敵に矢印を表示
+            arrow.gameObject.SetActive(true);
+
+            // カメラから敵への方向を計算
+            Vector3 direction = enemy.position - m_Player.position;
+            // 水平方向のみ
+            direction.y = 0;
+
+            // 相対角度を計算
+            float angle = Vector3.SignedAngle(camForward, direction, Vector3.up);
+
+            // 度数をラジアンに変換
+            float rad = angle * Mathf.Deg2Rad;
+
+            // 中心からの円周上の座標を計算
+            arrow.anchoredPosition = new Vector2(Mathf.Sin(rad) * m_Radius, Mathf.Cos(rad) * m_Radius);
+
+            // 矢印を敵の方向に回転
+            arrow.localRotation = Quaternion.Euler(0, 0, -angle);
+
+            // 距離テキストを更新
+            if (indicator.DistanceText != null)
             {
-                arrow.gameObject.SetActive(true);
-
-                // カメラから敵への方向を計算
-                Vector3 direction = enemy.position - m_Player.position;
-                // 水平方向のみ
-                direction.y = 0;
-
-                // 相対角度を計算
-                float angle = Vector3.SignedAngle(camForward, direction, Vector3.up);
-
-                // 度数をラジアンに変換
-                float rad = angle * Mathf.Deg2Rad;
-
-                // 中心からの円周上の座標を計算
-                arrow.anchoredPosition = new Vector2(Mathf.Sin(rad) * m_Radius, Mathf.Cos(rad) * m_Radius);
-
-                // 矢印を敵の方向に回転
-                arrow.localRotation = Quaternion.Euler(0, 0, -angle);
-
-                // 距離テキストを更新
-                if (indicator.DistanceText != null)
-                {
-                    indicator.DistanceText.text = $"{distance:F0}m";
-                    // テキストの回転をリセット（常に読みやすい向きに）
-                    indicator.DistanceText.transform.rotation = Quaternion.identity;
-                }
-            }
-            else
-            {
-                // 画面内の敵は非表示
-                arrow.gameObject.SetActive(false);
+                indicator.DistanceText.text = $"{distance:F0}m";
+                // テキストの回転をリセット（常に読みやすい向きに）
+                indicator.DistanceText.transform.rotation = Quaternion.identity;
             }
         }
     }

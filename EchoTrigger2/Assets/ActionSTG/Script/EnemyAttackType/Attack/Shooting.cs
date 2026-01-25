@@ -57,7 +57,12 @@ public class Shooting : MonoBehaviour
     private void Update()
     {
         // AlertLevelのm_AttackModeがfalseなら何もしない
-        if (m_AlertLevel == null || !m_AlertLevel.m_AttackMode) return;
+        if (m_AlertLevel == null || !m_AlertLevel.m_AttackMode)
+        {
+            // 攻撃モードオフ時は走るアニメーションを停止
+            if (m_Animator != null) m_Animator.SetBool("Run", false);
+            return;
+        }
 
         // ターゲットがなければ何もしない
         if (m_Target == null) return;
@@ -78,6 +83,9 @@ public class Shooting : MonoBehaviour
             m_Agent.speed = 0f;
             m_Agent.velocity = Vector3.zero;
 
+            // 走るアニメーションを停止
+            if (m_Animator != null) m_Animator.SetBool("Run", false);
+
             // プレイヤーの方を向く
             LookAtTarget();
 
@@ -93,6 +101,9 @@ public class Shooting : MonoBehaviour
             // 射撃距離外ならプレイヤーを追跡
             m_Agent.speed = m_ChaseSpeed;
             m_Agent.isStopped = false;
+
+            // 追跡中は走るアニメーションを再生
+            if (m_Animator != null) m_Animator.SetBool("Run", true);
 
             // ターゲットが1m以上移動したか、経路がない場合のみ再計算
             float targetMoveDistance = Vector3.Distance(m_Target.position, m_LastTargetPosition);

@@ -21,6 +21,9 @@ public class MemoAction : MonoBehaviour
     [Header("Canvas全てアタッチ"), SerializeField]
     private GameObject m_CanvasObject;
 
+    [Header("Memoのscriptをアタッチ"),SerializeField]
+    private Memo m_MemoScript;
+
     //フラグ
     // エリア内にいるか
     private bool m_IsPlayerInArea = false;
@@ -165,6 +168,12 @@ public class MemoAction : MonoBehaviour
         if (canvasComp != null)
         {
             canvasComp.enabled = true; 
+        }
+
+        // Memoスクリプトを無効化
+        if (m_MemoScript != null)
+        {
+            m_MemoScript.enabled = false;
         }
 
         Debug.Log("ワープ完了・カメラ復帰");
