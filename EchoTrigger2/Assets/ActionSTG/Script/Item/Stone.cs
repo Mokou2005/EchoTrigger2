@@ -69,50 +69,58 @@ public class Stone : MonoBehaviour
     }
     void Hit()
     {
+        // 最も近い敵を見つけるための変数
+        GameObject closestEnemy = null;
+        float closestDist = Mathf.Infinity;
         
-        //敵とぶつかった石との距離を計算
-        foreach (GameObject enmay in m_EnemySystem.m_Enemys)
+        // 敵とぶつかった石との距離を計算し、最も近い敵を見つける
+        foreach (GameObject enemy in m_EnemySystem.m_Enemys)
         {
-            if (enmay == null) continue;  // 破壊済みの敵をスキップ
+            if (enemy == null) continue;  // 破壊済みの敵をスキップ
             
-            float dist = Vector3.Distance(transform.position, enmay.transform.position);
+            float dist = Vector3.Distance(transform.position, enemy.transform.position);
 
-            Vector3 dir = (transform.position - enmay.transform.position).normalized;
+            Vector3 dir = (transform.position - enemy.transform.position).normalized;
             RaycastHit hitInfo;
-       
 
-            //  Ray が何かに当たった場合
-            if (Physics.Raycast(enmay.transform.position, dir, out hitInfo, dist))
+            // Ray が何かに当たった場合（壁で遮られているかチェック）
+            if (Physics.Raycast(enemy.transform.position, dir, out hitInfo, dist))
             {
-                // 壁か床にヒットする無効
+                // 壁か床にヒットしていたらこの敵はスキップ
                 if (hitInfo.collider.GetComponent<HitAreaMarker>() != null)
                 {
-                    Debug.Log($"壁/床が遮っている！敵 {enmay.name} は石に反応しない");
+                    Debug.Log($"壁/床が遮っている！敵 {enemy.name} は石に反応しない");
                     continue;
                 }
-
             }
 
-            //投げた間の距離が15以下ならその石に移動
-            if (dist<=15)
+            // 距離30以内で、今までの最小距離より近い敵を記録
+            if (dist <= 30 && dist < closestDist)
             {
-                Debug.Log("敵が石の方に移動");
-                foreach (EnemyPatrol_Waypoint wp in m_waypoint)
+                closestDist = dist;
+                closestEnemy = enemy;
+            }
+        }
+
+        // 最も近い敵がいる場合のみ処理
+        if (closestEnemy != null)
+        {
+            EnemyPatrol_Waypoint wp = closestEnemy.GetComponent<EnemyPatrol_Waypoint>();
+            if (wp != null)
+            {
+                if (closestDist <= 15)
                 {
+                    Debug.Log($"敵 {closestEnemy.name} が石の方に移動（距離: {closestDist}）");
                     wp.StonePatrol();
                 }
-            }
-            if (dist <= 30)
-            {
-                Debug.Log("敵の頭に？だけ出す");
-                foreach (EnemyPatrol_Waypoint wp in m_waypoint)
+                else if (closestDist <= 30)
                 {
-                    //まだ未完成
+                    Debug.Log($"敵 {closestEnemy.name} の頭に？だけ出す（距離: {closestDist}）");
+                    // まだ未完成 - 必要に応じて処理を追加
                     wp.StonePatrol();
                 }
             }
         }
-        
     }
 }
 

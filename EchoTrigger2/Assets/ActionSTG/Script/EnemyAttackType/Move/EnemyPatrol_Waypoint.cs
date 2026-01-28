@@ -123,8 +123,8 @@ public class EnemyPatrol_Waypoint : MonoBehaviour
     /// <param name="stonePos"></param>
     public void OnDetectStone(Vector3 stonePos)
     {
-        //攻撃中など
-        if (m_agent.enabled == false) return; 
+        //攻撃中、NavMeshAgentが無効、またはNavMesh上にない場合は処理しない
+        if (m_agent == null || !m_agent.enabled || !m_agent.isOnNavMesh) return; 
 
         m_agent.SetDestination(stonePos);
         //パトロール再開時に最初から
@@ -146,6 +146,9 @@ public class EnemyPatrol_Waypoint : MonoBehaviour
     //石の方に向かう関数
     public void StonePatrol()
     {
+        // NavMeshAgentが無効またはNavMesh上にない場合は処理しない
+        if (m_agent == null || !m_agent.enabled || !m_agent.isOnNavMesh) return;
+
         GameObject target = GameObject.FindGameObjectWithTag("StoneGetTag");
         if (target!=null)
         {
