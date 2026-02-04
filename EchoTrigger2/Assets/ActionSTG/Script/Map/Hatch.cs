@@ -1,53 +1,75 @@
 using UnityEngine;
 /// <summary>
-/// ƒnƒbƒ`‚Ìˆ—
+/// ãƒãƒƒãƒã®å‡¦ç†
 /// </summary>
 public class Hatch : MonoBehaviour
 {
-    [Header("ƒeƒŒƒ|[ƒg‚·‚éêŠ"), SerializeField]
+    [Header("ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã™ã‚‹å ´æ‰€"), SerializeField]
     private Transform m_TPPosition;
 
-    [Header("Player‚ğƒAƒ^ƒbƒ`"), SerializeField]
+    [Header("Playerã‚’ã‚¢ã‚¿ãƒƒãƒ"), SerializeField]
     private GameObject m_PlayerTP;
 
-    [Header("ƒGƒŠƒA‚É“ü‚Á‚½‚©‚Ìƒtƒ‰ƒO"), SerializeField]
+    [Header("ã‚¨ãƒªã‚¢ã«å…¥ã£ãŸã‹ã®ãƒ•ãƒ©ã‚°"), SerializeField]
     private bool m_InAria = false;
 
-    [Header("ƒS[ƒ‹‚ÌƒIƒuƒWƒFƒNƒg"), SerializeField]
+    [Header("ã‚´ãƒ¼ãƒ«ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ"), SerializeField]
     private GameObject m_GoalObject;
 
-    [Header("Loading‚Ìscript‚ğƒAƒ^ƒbƒ`"),SerializeField]
+    [Header("Loadingã®scriptã‚’ã‚¢ã‚¿ãƒƒãƒ"),SerializeField]
     private Loading m_Loading;
+
+    [Header("Keyè¡¨ç¤ºã®ç”»åƒ"),SerializeField]
+    private GameObject m_KeyImage;
+
     /// <summary>
-    /// ƒGƒŠƒA‚É“ü‚Á‚½‚çƒeƒŒƒ|[ƒg‚Ìˆ—‚Ö
+    /// é–‹å§‹
     /// </summary>
-    /// <param name="other">ƒvƒŒƒCƒ„[</param>
+    private void Start()
+    {
+        m_KeyImage.gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// ã‚¨ãƒªã‚¢ã«å…¥ã£ãŸã‚‰ãƒ†ãƒ¬ãƒãƒ¼ãƒˆã®å‡¦ç†ã¸
+    /// </summary>
+    /// <param name="other">ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼</param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            //ƒGƒŠƒA‚ğŒŸ’m
+            //ã‚¨ãƒªã‚¢ã‚’æ¤œçŸ¥
             m_InAria = true;
+            //Keyè¡¨ç¤º
+            if (m_KeyImage != null)
+            {
+                m_KeyImage.SetActive(true);
+            }
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            //ƒGƒŠƒA‚©‚ç”²‚¯‚½
+            //ã‚¨ãƒªã‚¢ã‹ã‚‰æŠœã‘ãŸ
             m_InAria = false;
+            //Keyéè¡¨ç¤º
+            if (m_KeyImage != null)
+            {
+                m_KeyImage.SetActive(false);
+            }
         }
     }
 
     /// <summary>
-    ///XV
+    ///æ›´æ–°
     /// </summary>
     private void Update()
     {
-        //ƒGƒŠƒA‚É“ü‚Á‚Ä‚¢‚ÄEƒL[‚ğ‰Ÿ‚µ‚½‚çTP
-        if (Input.GetKeyDown(KeyCode.E) &&@m_InAria)
+        //ã‚¨ãƒªã‚¢ã«å…¥ã£ã¦ã„ã¦Eã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã‚‰TP
+        if (Input.GetKeyDown(KeyCode.E) &&ã€€m_InAria)
         {
-            //ƒ[ƒfƒBƒ“ƒO‚·‚é
+            //ãƒ­ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã™ã‚‹
             m_Loading.gameObject.SetActive(true);
             m_PlayerTP.transform.position = m_TPPosition.position;
             m_GoalObject.SetActive(true);

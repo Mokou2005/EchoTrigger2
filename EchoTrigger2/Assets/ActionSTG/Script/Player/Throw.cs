@@ -21,6 +21,8 @@ public class Throw : MonoBehaviour
     [SerializeField] private bool m_IsBrace = false;
     //投げたフラグ
     [SerializeField] public bool m_IsThrow = false;
+    //投げ中フラグ（連打防止用）
+    private bool m_IsThrowing = false;
     //手に持っている石を保存
     private GameObject m_HoldingStone = null;
 
@@ -105,10 +107,11 @@ public class Throw : MonoBehaviour
             }
            
         }
-        // 左クリックで投げる
-        if (Input.GetMouseButtonDown(0) && m_IsThrow)
+        // 左クリックで投げる（投げ中でなければ）
+        if (Input.GetMouseButtonDown(0) && m_IsThrow && !m_IsThrowing)
         {
             Debug.Log("投げた");
+            m_IsThrowing = true; // 連打防止フラグをON
             m_AudioSource.PlayOneShot(m_ThrowSE);
             m_IsBrace = false;
             // Throw アニメーション再生
@@ -154,6 +157,7 @@ public class Throw : MonoBehaviour
     void ThrowEnd()
     {
         m_IsThrow = false;
+        m_IsThrowing = false; // 連打防止フラグをOFF
         m_animator.SetBool("Brace", false);
         // 構え解除 → 手の石を消す
         if (m_HoldingStone != null)

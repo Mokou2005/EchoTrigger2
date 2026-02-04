@@ -4,81 +4,81 @@ using UnityEngine.Events;
 using System.Collections;
 public class KeyPadRock : MonoBehaviour
 {
-    [Header("³‰ğ‚ÌƒR[ƒh")]
+    [Header("æ­£è§£ã®ã‚³ãƒ¼ãƒ‰")]
     public string m_KeypadCode = "1234";
-    [Header("ƒfƒBƒXƒvƒŒƒC‚É•\¦‚·‚éƒeƒLƒXƒg")]
+    [Header("ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã«è¡¨ç¤ºã™ã‚‹ãƒ†ã‚­ã‚¹ãƒˆ")]
     public TextMeshProUGUI m_DisplayText;
-    [Header("³‰ğ‚ÌŒø‰Ê‰¹")]
+    [Header("æ­£è§£ã®åŠ¹æœéŸ³")]
     public AudioClip m_Success;
-    [Header("¸”s‚ÌŒø‰Ê‰¹")]
+    [Header("å¤±æ•—ã®åŠ¹æœéŸ³")]
     public AudioClip m_Failure;
-    [Header("‘I‘ğŒø‰Ê‰¹")]
+    [Header("é¸æŠåŠ¹æœéŸ³")]
     public AudioClip m_Push;
-    [Header("ƒJƒƒ‰")]
+    [Header("ã‚«ãƒ¡ãƒ©")]
     public Camera m_Camera;
-    [Header("•s³‰ğ—p‚Ì“d‹C")]
+    [Header("ä¸æ­£è§£ç”¨ã®é›»æ°—")]
     public GameObject m_Electricity;
-    [Header("ƒ_ƒ[ƒW")]
+    [Header("ãƒ€ãƒ¡ãƒ¼ã‚¸")]
     public int m_DamageOnFail = 20;
-    [Header("Buttan‚Ìscript")]
+    [Header("Buttanã®script")]
     public Buttun m_Buttan;
-    [Header("‚«o‚µ")]
+    [Header("å¹ãå‡ºã—")]
     public GameObject m_Hukidasi;
-    // ƒvƒŒƒCƒ„[‚ÌQÆ‚ğ•Û‘¶‚µ‚Ä‚¨‚­
+    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å‚ç…§ã‚’ä¿å­˜ã—ã¦ãŠã
     private Parameta m_PlayerParameta;
-    //ƒGƒŠƒA‚É“ü‚Á‚½‚©‚Ç‚¤‚©H
+    //ã‚¨ãƒªã‚¢ã«å…¥ã£ãŸã‹ã©ã†ã‹ï¼Ÿ
     private bool m_Aria = false;
-    // Keypad‚ğ‰Ÿ‚µ‚½‚©‚Ç‚¤‚©
+    // Keypadã‚’æŠ¼ã—ãŸã‹ã©ã†ã‹
     private bool m_Expanded = false;
-    //“ü—Í‚Ì•¶š—ñ
+    //å…¥åŠ›ã®æ–‡å­—åˆ—
     private string m_Input = "";
-    // Œø‰Ê‰¹‚ğ–Â‚ç‚·‚½‚ß‚Ì AudioSource
+    // åŠ¹æœéŸ³ã‚’é³´ã‚‰ã™ãŸã‚ã® AudioSource
     private AudioSource m_AudioSource;
-    //³‰ğ‚µ‚½‚©‚Ç‚¤‚©;
+    //æ­£è§£ã—ãŸã‹ã©ã†ã‹;
     public bool m_OpenDoor = false;
 
 
     void Start()
     {
-        // Å‰‚ÉƒŠƒZƒbƒg•\¦
+        // æœ€åˆã«ãƒªã‚»ãƒƒãƒˆè¡¨ç¤º
         UpdateDisplay();
-        // AudioSource ‚ğæ“¾
+        // AudioSource ã‚’å–å¾—
         m_AudioSource = GetComponent<AudioSource>();
-        //”ñ•\¦
+        //éè¡¨ç¤º
         m_Camera.enabled = false;
         m_Electricity.SetActive(false);
         m_Hukidasi.SetActive(false);
     }
     private void Update()
     {
-        // EƒL[‚ğ‰Ÿ‚µ‚½‚ç‘å‚«‚­‚·‚é
+        // Eã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã‚‰å¤§ããã™ã‚‹
         if (m_Aria && Input.GetKeyDown(KeyCode.E) && !m_Expanded&& !m_OpenDoor)
         {
-            Debug.Log("KEYPAD‚ğ‘I‘ğI");
+            Debug.Log("KEYPADã‚’é¸æŠï¼");
             m_Expanded = true;
-            //‰æ‘œ•\¦
+            //ç”»åƒè¡¨ç¤º
             m_Buttan.m_TABImage.enabled = true;
             m_Buttan.m_ENTERImage.enabled = true;
             m_Buttan.m_BACKSPACEImage.enabled = true;
-            //ƒJƒƒ‰•\¦
+            //ã‚«ãƒ¡ãƒ©è¡¨ç¤º
             m_Camera.enabled = true;
-            //“ü—Í‚ğƒŠƒZƒbƒg
+            //å…¥åŠ›ã‚’ãƒªã‚»ãƒƒãƒˆ
             m_Input = "";
             UpdateDisplay();
         }
         else if (Input.GetKeyDown(KeyCode.Tab) && m_Expanded&& !m_OpenDoor)
         {
-            Debug.Log("KEYPAD‚©‚ç‘ŞoI");
+            Debug.Log("KEYPADã‹ã‚‰é€€å‡ºï¼");
             m_Expanded = false;
-            //‰æ‘œ”ñ•\¦
+            //ç”»åƒéè¡¨ç¤º
             m_Buttan.m_TABImage.enabled = false;
             m_Buttan.m_ENTERImage.enabled = false;
             m_Buttan.m_BACKSPACEImage.enabled = false;
-            //ƒJƒƒ‰‚ğ”ñ•\¦
+            //ã‚«ãƒ¡ãƒ©ã‚’éè¡¨ç¤º
             m_Camera.enabled = false;
             UpdateDisplay();
         }
-        //Šg‘å’†‚Ì‚¾‚¯“ü—Í‚ğó‚¯•t‚¯‚é
+        //æ‹¡å¤§ä¸­ã®æ™‚ã ã‘å…¥åŠ›ã‚’å—ã‘ä»˜ã‘ã‚‹
         if (m_Expanded)
         {
             for (int i = 0; i <= 9; i++)
@@ -93,52 +93,53 @@ public class KeyPadRock : MonoBehaviour
                     }
                 }
             }
-            //BackspaceƒL[‚Åíœ
+            //Backspaceã‚­ãƒ¼ã§å‰Šé™¤
             if (Input.GetKeyDown(KeyCode.Backspace) && m_Input.Length > 0)
             {
                 m_AudioSource.PlayOneShot(m_Push);
                 m_Input = m_Input.Substring(0, m_Input.Length - 1);
                 UpdateDisplay();
             }
-            //ƒGƒ“ƒ^[ƒL[‚Å”»’è
+            //ã‚¨ãƒ³ã‚¿ãƒ¼ã‚­ãƒ¼ã§åˆ¤å®š
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 if (m_Input == m_KeypadCode)
                 {
-                    Debug.Log("³‰ğI");
+                    Debug.Log("æ­£è§£ï¼");
                     m_AudioSource.PlayOneShot(m_Success);
                     m_OpenDoor = true;
+                    m_Expanded = false; // æ­£è§£æ™‚ã«Expandedã‚’falseã«
                     m_Camera.enabled = false;
-                    //‰æ‘œ”ñ•\¦
+                    //ç”»åƒéè¡¨ç¤º
                     m_Buttan.m_TABImage.enabled = false;
                     m_Buttan.m_ENTERImage.enabled = false;
                     m_Buttan.m_BACKSPACEImage.enabled = false;
                 }
                 else
                 {
-                    Debug.Log("•s³‰ğ");
+                    Debug.Log("ä¸æ­£è§£");
                     m_AudioSource.PlayOneShot(m_Failure);
                     StartCoroutine(EffectTime());
                     m_Camera.enabled = false;
                     m_Expanded = false;
-                    //‰æ‘œ”ñ•\¦
+                    //ç”»åƒéè¡¨ç¤º
                     m_Buttan.m_TABImage.enabled = false;
                     m_Buttan.m_ENTERImage.enabled = false;
                     m_Buttan.m_BACKSPACEImage.enabled = false;
-                    //ƒvƒŒƒCƒ„[‚Éƒ_ƒ[ƒW‚ğ—^‚¦‚é
+                    //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸ãˆã‚‹
                     if (m_PlayerParameta != null)
                     {
                         m_PlayerParameta.TakeDamege(m_DamageOnFail);
                     }
                     else
                     {
-                        Debug.Log("m_PlayerParameta‚ª“ü‚Á‚Ä‚Ü‚¹‚ñB");
+                        Debug.Log("m_PlayerParametaãŒå…¥ã£ã¦ã¾ã›ã‚“ã€‚");
                     }
 
 
 
                 }
-                // ”»’èŒã‚ÉƒŠƒZƒbƒg‚·‚é‚È‚ç‚±‚±
+                // åˆ¤å®šå¾Œã«ãƒªã‚»ãƒƒãƒˆã™ã‚‹ãªã‚‰ã“ã“
                 m_Input = "";
                 UpdateDisplay();
             }
@@ -150,28 +151,28 @@ public class KeyPadRock : MonoBehaviour
     {
         if (m_DisplayText != null)
         {
-            // “ü—Í’†‚Í“ü—Í’l‚ğ•\¦(Å‰‚Í____‚Éİ’è)
+            // å…¥åŠ›ä¸­ã¯å…¥åŠ›å€¤ã‚’è¡¨ç¤º(æœ€åˆã¯____ã«è¨­å®š)
             m_DisplayText.text = m_Input.PadRight(4, '_');
         }
     }
-    //effect‚ÌŠÔ
+    //effectã®æ™‚é–“
     private IEnumerator EffectTime()
     {
-        // •\¦
+        // è¡¨ç¤º
         m_Electricity.SetActive(true);
-        // 1•b‘Ò‚Â
+        // 1ç§’å¾…ã¤
         yield return new WaitForSeconds(1f);
-        // ”ñ•\¦
+        // éè¡¨ç¤º
         m_Electricity.SetActive(false);
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !m_OpenDoor)
         {
-            Debug.Log("Keypad‚Ì”ÍˆÍ‚É“ü‚è‚Ü‚µ‚½I");
-            //ƒGƒŠƒA‚É“ü‚Á‚½
+            Debug.Log("Keypadã®ç¯„å›²ã«å…¥ã‚Šã¾ã—ãŸï¼");
+            //ã‚¨ãƒªã‚¢ã«å…¥ã£ãŸ
             m_Aria = true;
-            // ƒvƒŒƒCƒ„[‚ÌParameta‚ğæ“¾‚µ‚Ä•Û
+            // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®Parametaã‚’å–å¾—ã—ã¦ä¿æŒ
             m_PlayerParameta = other.GetComponent<Parameta>();
             m_Hukidasi.SetActive(true);
 
@@ -180,13 +181,16 @@ public class KeyPadRock : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") && !m_OpenDoor)
+        if (other.CompareTag("Player"))
         {
-            Debug.Log("Keypad‚Ì”ÍˆÍ‚©‚ço‚Ü‚µ‚½I");
-            //ƒGƒŠƒA‚É“ü‚Á‚½
+            Debug.Log("Keypadã®ç¯„å›²ã‹ã‚‰å‡ºã¾ã—ãŸï¼");
+            //ã‚¨ãƒªã‚¢ã‚’å¤‰ãˆã‚‹
             m_Aria = false;
             m_PlayerParameta = null;
-            m_Hukidasi.SetActive(false);
+            if (!m_OpenDoor)
+            {
+                m_Hukidasi.SetActive(false);
+            }
         }
     }
 }

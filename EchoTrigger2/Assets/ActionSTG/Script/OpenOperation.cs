@@ -38,7 +38,7 @@ public class OpenOperation : MonoBehaviour
         {
             Debug.LogError("AudioSourceがアタッチされてません");
         }
-        m_PushSE.Play();
+       
     }
 
     /// <summary>
