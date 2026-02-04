@@ -52,6 +52,10 @@ public class EnemyPatrol_Waypoint : MonoBehaviour
                m_agent.speed = 3f;
                 Debug.Log("Dogの速度を設定:" + m_agent.speed);
                 break;
+            case 3:
+                m_agent.speed = 1.5f;
+                Debug.Log("チュートリアルのキャラの速度を設定:" + m_agent.speed);
+                break;
             default:
                 Debug.LogError("未知のUnityTyoeが来ました。caseを確認してください。");
                 break;
@@ -106,6 +110,9 @@ public class EnemyPatrol_Waypoint : MonoBehaviour
     /// </summary>
     void MoveToNextPoint()
     {
+        // NavMeshAgentが無効またはNavMesh上にない場合は処理しない
+        if (m_agent == null || !m_agent.enabled || !m_agent.isOnNavMesh) return;
+
         if (m_Manager == null || m_Manager.m_Waypoints.Length == 0)
         {
             Debug.Log("WaypointManagerのscriptが原因です。");

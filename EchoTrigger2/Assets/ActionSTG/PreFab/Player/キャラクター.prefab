@@ -992,7 +992,7 @@ MonoBehaviour:
   m_CameraRadius: 0.3
   m_CollisionLayers:
     serializedVersion: 2
-    m_Bits: 1527
+    m_Bits: 1024
   pitchSpeed: 60
   minPitch: -30
   maxPitch: 45
@@ -5640,7 +5640,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4792730199392342869}
   serializedVersion: 2
-  m_LocalRotation: {x: 9.8416385e-15, y: -0.15126075, z: 2.1464928e-14, w: 0.988494}
+  m_LocalRotation: {x: 0, y: -0.15126085, z: 0, w: 0.9884939}
   m_LocalPosition: {x: -18.66, y: 2.7000003, z: 11.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5652,7 +5652,7 @@ Transform:
   - {fileID: 1047860049778396899}
   - {fileID: 2023075501539202884}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -17.4, z: 0}
 --- !u!114 &6290755604422273699
 MonoBehaviour:
   m_ObjectHideFlags: 0
