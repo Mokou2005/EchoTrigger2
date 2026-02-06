@@ -1,65 +1,73 @@
-
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 public class Memo : MonoBehaviour
 {
-    [Header("PlayerƒAƒjƒ[ƒ^[")]
+    [Header("Playerã‚¢ãƒ‹ãƒãƒ¼ã‚¿ãƒ¼")]
     public Animator m_Animator;
-    [Header("E‚¤‰æ‘œ")]
+    [Header("ç”»åƒ")]
     public GameObject m_PickUpImage;
-    [Header("Memo‚ÌƒLƒƒƒ“ƒoƒX")]
+    [Header("Memoã®ã‚­ãƒ£ãƒ³ãƒã‚¹")]
     public Canvas m_Canvas;
-    [Header("†‚Ì‰¹")]
+    [Header("éŸ³æ¥½")]
     public AudioClip m_MemoAudio;
-    [Header("Hpƒo[")]
+    [Header("Hpãƒãƒ¼")]
     public Image m_HPUI;
-    [Header("Hpƒo[Ô")]
+    [Header("Hpãƒãƒ¼Red")]
     public Image m_HPUIRed;
-    [Header("Buttun‚Ìscript")]
+    [Header("Buttunã®script")]
     public Buttun m_buttun;
     private AudioSource m_AudioSource;
-    //ƒGƒŠƒA‚É“ü‚Á‚½‚©‚Ç‚¤‚©
+    //ã‚¨ãƒªã‚¢ã«å…¥ã£ãŸã‹ã©ã†ã‹
     private bool m_Aria = false;
-    //EƒL[‚ğ‰Ÿ‚µ‚½‚©‚Ç‚¤‚©
+    //Eã‚­ãƒ¼ã‚’æŠ¼ã—ãŸã‹ã©ã†ã‹
     private bool m_E_KeyPush = false;
- 
-    
+
+    /// <summary>
+    /// ãƒ¡ãƒ¢ãŒé–‹ã„ã¦ã„ã‚‹ã‹ã©ã†ã‹ï¼ˆä»–ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰å‚ç…§ç”¨ï¼‰
+    /// </summary>
+    public static bool m_IsMemoOpen { get; private set; } = false;
 
     private void Start()
     {
         m_AudioSource = GetComponent<AudioSource>();
-        //”ñ•\¦
+        //éè¡¨ç¤º
         m_PickUpImage.SetActive(false);
         m_Canvas.enabled = false;
+        //åˆæœŸçŠ¶æ…‹ã¯ãƒ¡ãƒ¢ã‚’é–‰ã˜ã¦ã„ã‚‹
+        m_IsMemoOpen = false;
     }
     private void Update()
     {
         if (m_Aria && !m_E_KeyPush && Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("ƒƒ‚‚ğŠJ‚¢‚½"); 
-            m_E_KeyPush = true;           
-            //‰æ‘œ‚ğ•\¦
+            Debug.Log("é–‹ã"); 
+            m_E_KeyPush = true;
+            //ãƒ¡ãƒ¢ãŒé–‹ã„ã¦ã„ã‚‹çŠ¶æ…‹
+            m_IsMemoOpen = true;
+            //ç”»åƒè¡¨ç¤º
             m_Canvas.enabled = true;
             m_buttun.m_TABImage.enabled = true;
-            //‰æ‘œ‚ğ”ñ•\¦
+            //ç”»åƒéè¡¨ç¤º
             m_HPUI.enabled = false;
             m_HPUIRed.enabled = false;
-            //ƒƒ‚‚Ì‰¹
+            //éŸ³æ¥½
             m_AudioSource.PlayOneShot(m_MemoAudio);
         }
         if (m_E_KeyPush && Input.GetKeyDown(KeyCode.Tab))
         {
-            Debug.Log("Memo‚ğ•Â‚¶‚½");
+            Debug.Log("Memoé–‰ã˜ã‚‹");
             m_E_KeyPush = false;
-            //‰æ‘œ‚ğ•\¦
+            //ãƒ¡ãƒ¢ãŒé–‰ã˜ã¦ã„ã‚‹çŠ¶æ…‹
+            m_IsMemoOpen = false;
+            //ç”»åƒè¡¨ç¤º
             m_HPUI.enabled = true;
             m_HPUIRed.enabled = true;
-            //‰æ‘œ‚ğ”ñ•\¦
+            //ç”»åƒéè¡¨ç¤º
             m_Canvas.enabled = false;
             m_buttun.m_TABImage.enabled = false;
 
-            //ƒƒ‚‚Ì‰¹
+            //éŸ³æ¥½
             m_AudioSource.PlayOneShot(m_MemoAudio);
 
         }
@@ -68,21 +76,21 @@ public class Memo : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //player‚ª“ü‚Á‚½‚ç
+        //playerãªã‚‰
         if (other.CompareTag("Player"))
         {
             m_Aria = true;
-            //•\¦
+            //è¡¨ç¤º
             m_PickUpImage.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        //player‚ª‚Å‚½‚ç
+        //playerã§ãªã‚‰
         if (other.CompareTag("Player"))
         {
             m_Aria = false;
-            //”ñ•\¦
+            //éè¡¨ç¤º
             m_PickUpImage.SetActive(false);
         }
     }

@@ -22,6 +22,10 @@ public class Reload : MonoBehaviour
     }
     public void Update()
     {
+        //オプション中またはメモを見ている間は操作禁止
+        if (Options.m_IsOptionsOpen || Memo.m_IsMemoOpen)
+            return;
+
         if (Input.GetKeyDown(KeyCode.R) && !m_Reload)
         {
             // 弾がフルの場合、または予備弾薬(Index)がない場合はリロードしない

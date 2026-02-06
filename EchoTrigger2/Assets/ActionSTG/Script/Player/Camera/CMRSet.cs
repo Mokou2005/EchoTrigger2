@@ -33,8 +33,8 @@ public class CMRSet : MonoBehaviour
     }
     void LateUpdate()
     {
-        //オプション中は操作禁止
-        if (Options.m_IsOptionsOpen)
+        //オプション中またはメモを見ている間は操作禁止
+        if (Options.m_IsOptionsOpen || Memo.m_IsMemoOpen)
             return;
 
         if (m_CMRBase)

@@ -64,8 +64,8 @@ public class PlayerAttack : MonoBehaviour
     [System.Obsolete]
     void Update()
     {
-        //オプション中は操作禁止
-        if (Options.m_IsOptionsOpen)
+        //オプション中またはメモを見ている間は操作禁止
+        if (Options.m_IsOptionsOpen || Memo.m_IsMemoOpen)
             return;
 
         //投げる構えをしていなくマウスを押したら発射

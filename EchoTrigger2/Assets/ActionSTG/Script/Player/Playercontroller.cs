@@ -35,8 +35,8 @@ public class Playercontroller : MonoBehaviour
 
     private void Update()
     {
-        //オプション中は操作禁止
-        if (Options.m_IsOptionsOpen)
+        //オプション中またはメモを見ている間は操作禁止
+        if (Options.m_IsOptionsOpen || Memo.m_IsMemoOpen)
             return;
         
         //移動入力があるかどうか
@@ -59,9 +59,16 @@ public class Playercontroller : MonoBehaviour
     }
     void FixedUpdate()
     {
-        //オプション中は操作禁止
-        if (Options.m_IsOptionsOpen)
+        //オプション中またはメモを見ている間は操作禁止
+        if (Options.m_IsOptionsOpen || Memo.m_IsMemoOpen)
+        {
+            //移動を即座に停止（慣性をなくす）
+            m_Rigidbody.linearVelocity = new Vector3(0, m_Rigidbody.linearVelocity.y, 0);
+            //アニメーションをアイドル状態にリセット
+            m_Animator.SetFloat("X", 0);
+            m_Animator.SetFloat("Y", 0);
             return;
+        }
         //しゃがみ中は移動禁止
         if (Crouching.m_Crouching)
             return;

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class EnemyScanner : MonoBehaviour
@@ -9,6 +9,10 @@ public class EnemyScanner : MonoBehaviour
 
     void Update()
     {
+        //オプション中またはメモを見ている間は操作禁止
+        if (Options.m_IsOptionsOpen || Memo.m_IsMemoOpen)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Space) && !m_isScanning)
         {
             StartCoroutine(Scan());
@@ -19,7 +23,7 @@ public class EnemyScanner : MonoBehaviour
     {
         m_isScanning = true;
         m_scanMat.SetFloat("_Scan", 1);
-        m_scanMat.SetFloat("_ScanRadius", 0);  // �� ���Z�b�g�ǉ�
+        m_scanMat.SetFloat("_ScanRadius", 0);
 
         float radius = 0f;
         while (radius < 100f)

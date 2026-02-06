@@ -1,11 +1,11 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Crouching : MonoBehaviour
 {
     private Animator m_CrouchingAnimator;
-    //‚µ‚á‚ª‚İ’†‚©
+    //ã—ã‚ƒãŒã¿ä¸­
     private bool m_Down = false;
-    //‚µ‚á‚ª‚İ’†‚Í“®‚«‚ğ’â~ipublic static‚Í‘¼‚Ìscript‚É˜A“®j
+    //ã—ã‚ƒãŒã¿ä¸­ã¯å‹•ãåœæ­¢ï¼ˆpublic staticã¯ä»–ã®scriptã«é€£å‹•ï¼‰
     public static bool m_Crouching = false;
 
     private void Start()
@@ -14,15 +14,19 @@ public class Crouching : MonoBehaviour
     }
     public void Update()
     {
+        //ã‚ªãƒ—ã‚·ãƒ§ãƒ³ä¸­ã¾ãŸã¯ãƒ¡ãƒ¢ã‚’è¦‹ã¦ã„ã‚‹é–“ã¯æ“ä½œç¦æ­¢
+        if (Options.m_IsOptionsOpen || Memo.m_IsMemoOpen)
+            return;
+
         if (Input.GetKeyDown(KeyCode.F))
         {
-            m_Down = !m_Down;//‚µ‚á‚ª‚İó‘Ô‚ÌØ‚è‘Ö‚¦iOn‚©Off‚©j
+            m_Down = !m_Down;//ã—ã‚ƒãŒã¿çŠ¶æ…‹ã®åˆ‡ã‚Šæ›¿ãˆï¼ˆOnã€œOffï¼‰
             m_CrouchingAnimator.SetBool("Down", m_Down);
             m_Crouching = true;
         }
 
     }
-    //‚µ‚á‚ª‚İƒAƒjƒ[ƒVƒ‡ƒ“‚ªI—¹‚µ‚½‚ç“®‚­
+    //ã—ã‚ƒãŒã¿ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†æ™‚ã«å‹•ã
     public void CrouchingEnd2()
     {
    
