@@ -6467,17 +6467,17 @@ PrefabInstance:
     - target: {fileID: 6578688290386390327, guid: 68d75b934cf6d4a40a82f8ba8b329f45,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.81
+      value: 3.82
       objectReference: {fileID: 0}
     - target: {fileID: 6578688290386390327, guid: 68d75b934cf6d4a40a82f8ba8b329f45,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.46
+      value: 0.91
       objectReference: {fileID: 0}
     - target: {fileID: 6578688290386390327, guid: 68d75b934cf6d4a40a82f8ba8b329f45,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 25.53
+      value: 9.32
       objectReference: {fileID: 0}
     - target: {fileID: 6578688290386390327, guid: 68d75b934cf6d4a40a82f8ba8b329f45,
         type: 3}
@@ -20159,7 +20159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528b42ffe3df2ec4d91f9e30f9c8d423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StartQuest: {fileID: 11400000, guid: 94eafcb3db0b3a842ba7d82fadba74c2, type: 2}
+  m_StartQuest: {fileID: 11400000, guid: 48a532a7f4bda204d9400dfe824bd30a, type: 2}
   m_UIManager: {fileID: 1871907422}
 --- !u!1001 &1879185256
 PrefabInstance:
@@ -23005,6 +23005,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3666122230250742192, guid: 161140e3666f7b844a3c500ee161c6b8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3701293416006625435, guid: 161140e3666f7b844a3c500ee161c6b8,
         type: 3}
       propertyPath: m_Layer
@@ -23299,7 +23304,7 @@ PrefabInstance:
     - target: {fileID: 4346559248932009398, guid: 161140e3666f7b844a3c500ee161c6b8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4347037136043604933, guid: 161140e3666f7b844a3c500ee161c6b8,
         type: 3}
@@ -24479,7 +24484,7 @@ PrefabInstance:
     - target: {fileID: 7662755350623994273, guid: 161140e3666f7b844a3c500ee161c6b8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7672999417338931239, guid: 161140e3666f7b844a3c500ee161c6b8,
         type: 3}
