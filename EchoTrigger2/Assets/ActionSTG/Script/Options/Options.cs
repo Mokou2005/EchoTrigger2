@@ -92,8 +92,8 @@ public class Options : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        //選択オブジェクトが表示されていたら
-        if (m_SelectionObj.activeSelf)
+        //選択オブジェクトが表示されており、かつ説明画面が開いていない場合のみ
+        if (m_SelectionObj.activeSelf && !m_IsDescriptionOpen)
         {
             //上キーが押されたら
             if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -243,8 +243,8 @@ public class Options : MonoBehaviour
             }
         }
 
-        //選択処理
-        if (Input.GetKeyDown(KeyCode.Return))
+        //オプションが開いており、選択画面が準備完了で、かつ説明画面が開いていない場合のみEnterを受け付ける
+        if (m_IsOptionsOpen && m_SelectionOnImage && !m_IsDescriptionOpen && Input.GetKeyDown(KeyCode.Return))
         {
             //選択Sound再生
             m_PushSelectionSE.Play();

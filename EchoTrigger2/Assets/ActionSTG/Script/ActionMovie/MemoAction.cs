@@ -1,15 +1,16 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
+
 /// <summary>
 /// メモを見終わったときのムービ設定
 /// </summary>
 public class MemoAction : MonoBehaviour
 {
-    [Header("Directorをアタッチ"),SerializeField]
+    [Header("Directorをアタッチ"), SerializeField]
     private PlayableDirector m_TimeLineDirector;
 
-    [Header("ワープする位置"),SerializeField]
+    [Header("ワープする位置"), SerializeField]
     private Transform m_WarpPoint;
 
     [Header("プレイヤー"), SerializeField]
@@ -21,7 +22,7 @@ public class MemoAction : MonoBehaviour
     [Header("Canvas全てアタッチ"), SerializeField]
     private GameObject m_CanvasObject;
 
-    [Header("Memoのscriptをアタッチ"),SerializeField]
+    [Header("Memoのscriptをアタッチ"), SerializeField]
     private Memo m_MemoScript;
 
     //フラグ
@@ -30,7 +31,10 @@ public class MemoAction : MonoBehaviour
     // メモを一度開いたか
     private bool m_IsMemoOpened = false;
     // ムービー再生済みか
-    private bool m_HasPlayed = false;     
+    private bool m_HasPlayed = false;
+
+    // ムービー再生中か（外部参照用）
+    public static bool m_IsMoviePlaying { get; private set; } = false;
 
     /// <summary>
     /// 更新
@@ -63,7 +67,7 @@ public class MemoAction : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             m_IsPlayerInArea = true;
-            m_IsMemoOpened = false; 
+            m_IsMemoOpened = false;
         }
     }
 
@@ -86,6 +90,7 @@ public class MemoAction : MonoBehaviour
     /// <returns></returns>
     IEnumerator PlayMovieAndWarp()
     {
+        m_IsMoviePlaying = true; // ムービー開始
         yield return null;
 
         // メモ消す
@@ -110,7 +115,7 @@ public class MemoAction : MonoBehaviour
             canvasComp = m_CanvasObject.GetComponent<Canvas>();
             if (canvasComp != null)
             {
-                canvasComp.enabled = false; 
+                canvasComp.enabled = false;
             }
         }
 
@@ -124,18 +129,18 @@ public class MemoAction : MonoBehaviour
         if (m_TimeLineDirector != null)
         {
             bool isTimelineFinished = false;
-            
+
             // タイムライン終了時のコールバックを設定
             m_TimeLineDirector.stopped += (director) => isTimelineFinished = true;
-            
+
             m_TimeLineDirector.Play();
-            
+
             // タイムラインが終了するまで待つ
             while (!isTimelineFinished)
             {
                 yield return null;
             }
-            
+
             m_TimeLineDirector.Stop();
         }
         else
@@ -167,7 +172,7 @@ public class MemoAction : MonoBehaviour
         //UI（キャンバス）の見た目を元に戻す
         if (canvasComp != null)
         {
-            canvasComp.enabled = true; 
+            canvasComp.enabled = true;
         }
 
         // Memoスクリプトを無効化
@@ -177,5 +182,6 @@ public class MemoAction : MonoBehaviour
         }
 
         Debug.Log("ワープ完了・カメラ復帰");
+        m_IsMoviePlaying = false; // ムービー終了
     }
 }

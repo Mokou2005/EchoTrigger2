@@ -35,8 +35,8 @@ public class Playercontroller : MonoBehaviour
 
     private void Update()
     {
-        //オプション中、メモ中、またはキーパッド操作中は操作禁止
-        if (Options.m_IsOptionsOpen || Memo.m_IsMemoOpen || KeyPadRock.m_IsKeyPadOpen)
+        //オプション中、メモ中、キーパッド操作中、またはムービー再生中は操作禁止
+        if (Options.m_IsOptionsOpen || Memo.m_IsMemoOpen || KeyPadRock.m_IsKeyPadOpen || MemoAction.m_IsMoviePlaying)
             return;
         
         //移動入力があるかどうか
@@ -59,8 +59,8 @@ public class Playercontroller : MonoBehaviour
     }
     void FixedUpdate()
     {
-        //オプション中、メモ中、またはキーパッド操作中は操作禁止
-        if (Options.m_IsOptionsOpen || Memo.m_IsMemoOpen || KeyPadRock.m_IsKeyPadOpen)
+        //オプション中、メモ中、キーパッド操作中、またはムービー再生中は操作禁止
+        if (Options.m_IsOptionsOpen || Memo.m_IsMemoOpen || KeyPadRock.m_IsKeyPadOpen || MemoAction.m_IsMoviePlaying)
         {
             //移動を即座に停止（慣性をなくす）
             m_Rigidbody.linearVelocity = new Vector3(0, m_Rigidbody.linearVelocity.y, 0);

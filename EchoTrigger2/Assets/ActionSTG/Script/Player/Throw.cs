@@ -54,8 +54,8 @@ public class Throw : MonoBehaviour
 
     private void Update()
     {
-        //オプション中、メモ中、またはキーパッド操作中は操作禁止
-        if (Options.m_IsOptionsOpen || Memo.m_IsMemoOpen || KeyPadRock.m_IsKeyPadOpen)
+        //オプション中、メモ中、キーパッド操作中、またはムービー再生中は操作禁止
+        if (Options.m_IsOptionsOpen || Memo.m_IsMemoOpen || KeyPadRock.m_IsKeyPadOpen || MemoAction.m_IsMoviePlaying)
             return;
 
         // Qボタンは構え
