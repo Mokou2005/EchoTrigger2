@@ -29,6 +29,15 @@ public class Parameta : MonoBehaviour
             return;
 
         m_Hp -= DamegePoint;
+
+        //敵がダメージを受けたら即座に攻撃モードへ移行
+        AlertLevel alertLevel = GetComponent<AlertLevel>();
+        if (alertLevel != null && !alertLevel.m_AttackMode)
+        {
+            //警戒度をMAXにして攻撃モードに移行
+            alertLevel.ForceAttackMode();
+        }
+
         //HPが０以下ならかつTagdeでEnemyなら
         if (m_Hp <= 0)
         {

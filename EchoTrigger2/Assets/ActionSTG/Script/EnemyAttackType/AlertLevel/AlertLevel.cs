@@ -87,6 +87,24 @@ public class AlertLevel : MonoBehaviour
     }
     //警戒度MAX判定
     public bool IsMax() => m_CurrentLevel >= m_MaxLevel;
+
+    /// <summary>
+    /// ダメージを受けた時に強制的に攻撃モードへ移行
+    /// </summary>
+    public void ForceAttackMode()
+    {
+        //既に攻撃モードなら何もしない
+        if (m_AttackMode)
+            return;
+
+        Debug.Log("ダメージを受けた → 強制的に攻撃モードへ");
+        //警戒度をMAXに設定
+        m_CurrentLevel = m_MaxLevel;
+        //攻撃モードに入る
+        m_AttackMode = true;
+        if (m_EnemyAI != null)
+            m_EnemyAI.ChangeState(AIState.Attack);
+    }
 }
 
 
