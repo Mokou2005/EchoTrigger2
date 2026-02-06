@@ -65,6 +65,9 @@ public class Options : MonoBehaviour
     //スワイプアニメーション中かどうか
     private bool m_IsSwipeAnimating = false;
 
+    //選択画面表示コルーチンの参照（キャンセル用）
+    private Coroutine m_SelectionOpenCoroutine = null;
+
     /// <summary>
     /// オプションが開いているかどうか（他のスクリプトから参照用）
     /// </summary>
@@ -203,11 +206,19 @@ public class Options : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
 
-                //選択画面をコルーチンで制御
-                StartCoroutine(SelectionImageOpen());
+                //選択画面をコルーチンで制御（参照を保持してキャンセルできるようにする）
+                m_SelectionOpenCoroutine = StartCoroutine(SelectionImageOpen());
             }
-            else
+            //m_SelectionOnImageがtrueの場合のみ閉じられる（両方のオブジェクトが表示完了している場合のみ）
+            else if (m_SelectionOnImage)
             {
+                //実行中のコルーチンがあればキャンセル
+                if (m_SelectionOpenCoroutine != null)
+                {
+                    StopCoroutine(m_SelectionOpenCoroutine);
+                    m_SelectionOpenCoroutine = null;
+                }
+
                 //選択画像を再表示状態にリセット（次回開いた時のため）
                 ShowSelectionImages();
                 
