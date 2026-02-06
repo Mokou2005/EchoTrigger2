@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
+
 public class KeyPadRock : MonoBehaviour
 {
     [Header("正解のコード")]
@@ -16,7 +17,7 @@ public class KeyPadRock : MonoBehaviour
     public AudioClip m_Push;
     [Header("カメラ")]
     public Camera m_Camera;
-    [Header("不正解用の電気")]
+    [Header("不正解用の電磁")]
     public GameObject m_Electricity;
     [Header("ダメージ")]
     public int m_DamageOnFail = 20;
@@ -24,19 +25,24 @@ public class KeyPadRock : MonoBehaviour
     public Buttun m_Buttan;
     [Header("吹き出し")]
     public GameObject m_Hukidasi;
-    // プレイヤーの参照を保存しておく
+
+    // プレイヤーのパラメータを保存しておく
     private Parameta m_PlayerParameta;
-    //エリアに入ったかどうか？
+    //エリアに入ったかどうか
     private bool m_Aria = false;
     // Keypadを押したかどうか
     private bool m_Expanded = false;
-    //入力の文字列
+    //入力文字
     private string m_Input = "";
     // 効果音を鳴らすための AudioSource
     private AudioSource m_AudioSource;
-    //正解したかどうか;
+    //正解したかどうか
     public bool m_OpenDoor = false;
 
+    /// <summary>
+    /// キーパッドが開いているかどうか（他のスクリプトから参照用）
+    /// </summary>
+    public static bool m_IsKeyPadOpen { get; private set; } = false;
 
     void Start()
     {
@@ -48,14 +54,18 @@ public class KeyPadRock : MonoBehaviour
         m_Camera.enabled = false;
         m_Electricity.SetActive(false);
         m_Hukidasi.SetActive(false);
+        // 初期状態は閉じている
+        m_IsKeyPadOpen = false;
     }
+
     private void Update()
     {
         // Eキーを押したら大きくする
-        if (m_Aria && Input.GetKeyDown(KeyCode.E) && !m_Expanded&& !m_OpenDoor)
+        if (m_Aria && Input.GetKeyDown(KeyCode.E) && !m_Expanded && !m_OpenDoor)
         {
             Debug.Log("KEYPADを選択！");
             m_Expanded = true;
+            m_IsKeyPadOpen = true; // フラグON
             //画像表示
             m_Buttan.m_TABImage.enabled = true;
             m_Buttan.m_ENTERImage.enabled = true;
@@ -66,10 +76,11 @@ public class KeyPadRock : MonoBehaviour
             m_Input = "";
             UpdateDisplay();
         }
-        else if (Input.GetKeyDown(KeyCode.Tab) && m_Expanded&& !m_OpenDoor)
+        else if (Input.GetKeyDown(KeyCode.Tab) && m_Expanded && !m_OpenDoor)
         {
-            Debug.Log("KEYPADから退出！");
+            Debug.Log("KEYPADから退出");
             m_Expanded = false;
+            m_IsKeyPadOpen = false; // フラグOFF
             //画像非表示
             m_Buttan.m_TABImage.enabled = false;
             m_Buttan.m_ENTERImage.enabled = false;
@@ -78,6 +89,7 @@ public class KeyPadRock : MonoBehaviour
             m_Camera.enabled = false;
             UpdateDisplay();
         }
+
         //拡大中の時だけ入力を受け付ける
         if (m_Expanded)
         {
@@ -105,10 +117,11 @@ public class KeyPadRock : MonoBehaviour
             {
                 if (m_Input == m_KeypadCode)
                 {
-                    Debug.Log("正解！");
+                    Debug.Log("正解");
                     m_AudioSource.PlayOneShot(m_Success);
                     m_OpenDoor = true;
-                    m_Expanded = false; // 正解時にExpandedをfalseに
+                    m_Expanded = false; 
+                    m_IsKeyPadOpen = false; // フラグOFF
                     m_Camera.enabled = false;
                     //画像非表示
                     m_Buttan.m_TABImage.enabled = false;
@@ -122,6 +135,7 @@ public class KeyPadRock : MonoBehaviour
                     StartCoroutine(EffectTime());
                     m_Camera.enabled = false;
                     m_Expanded = false;
+                    m_IsKeyPadOpen = false; // フラグOFF
                     //画像非表示
                     m_Buttan.m_TABImage.enabled = false;
                     m_Buttan.m_ENTERImage.enabled = false;
@@ -133,49 +147,40 @@ public class KeyPadRock : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("m_PlayerParametaが入ってません。");
+                        Debug.Log("m_PlayerParametaが入っていません");
                     }
-
-
-
                 }
-                // 判定後にリセットするならここ
+                // 判定後にリセット
                 m_Input = "";
                 UpdateDisplay();
             }
-
         }
-
     }
+
     private void UpdateDisplay()
     {
         if (m_DisplayText != null)
         {
-            // 入力中は入力値を表示(最初は____に設定)
+            // 入力中は入力値を表示
             m_DisplayText.text = m_Input.PadRight(4, '_');
         }
     }
-    //effectの時間
+
     private IEnumerator EffectTime()
     {
-        // 表示
         m_Electricity.SetActive(true);
-        // 1秒待つ
         yield return new WaitForSeconds(1f);
-        // 非表示
         m_Electricity.SetActive(false);
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !m_OpenDoor)
         {
-            Debug.Log("Keypadの範囲に入りました！");
-            //エリアに入った
+            Debug.Log("Keypadの範囲に入りました");
             m_Aria = true;
-            // プレイヤーのParametaを取得して保持
             m_PlayerParameta = other.GetComponent<Parameta>();
             m_Hukidasi.SetActive(true);
-
         }
     }
 
@@ -183,8 +188,7 @@ public class KeyPadRock : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Keypadの範囲から出ました！");
-            //エリアを変える
+            Debug.Log("Keypadの範囲から出ました");
             m_Aria = false;
             m_PlayerParameta = null;
             if (!m_OpenDoor)

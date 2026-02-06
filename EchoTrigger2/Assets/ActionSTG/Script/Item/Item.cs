@@ -2,16 +2,17 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [Header("ƒAƒCƒeƒ€‚Ì–¼‘O")]
+    [Header("ã‚¢ã‚¤ãƒ†ãƒ ã®åå‰")]
     public string m_ItemName;
     public Animator m_PlayerAnimator;
     public GameObject m_Image;
-    [Header("E‚¤‰¹")]
+    [Header("æ‹¾ã†éŸ³")]
     public AudioClip m_sound;
     private AudioSource m_audioSource;
 
     private ItemManager m_ItemManager;
     private bool isPlayerInRange = false;
+    private bool m_IsObtained = false; // å–å¾—æ¸ˆã¿ãƒ•ãƒ©ã‚°ã‚’è¿½åŠ 
 
     private void Start()
     {
@@ -21,25 +22,26 @@ public class Item : MonoBehaviour
 
     private void Update()
     {
-        // ƒvƒŒƒCƒ„[‚ª‹ß‚­‚É‚¢‚ÄAEƒL[‚ª‰Ÿ‚³‚ê‚½‚ç
-        if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒç¯„å›²å†…ã«ãŠã‚Šã€Eã‚­ãƒ¼ãŒæŠ¼ã•ã‚Œã€ã‹ã¤ã¾ã å–å¾—ã—ã¦ã„ãªã„å ´åˆ
+        if (isPlayerInRange && Input.GetKeyDown(KeyCode.E) && !m_IsObtained)
         {
+            m_IsObtained = true; // å–å¾—ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
             m_PlayerAnimator.SetBool("Push", true);
             if (m_ItemManager != null)
             {
-                // ƒNƒGƒXƒgƒ}ƒl[ƒWƒƒ[‚É’Ê’m
+                // ã‚¯ã‚¨ã‚¹ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã«é€šçŸ¥
                 FindObjectOfType<QuestManager>().OnItemObtained(m_ItemName);
                 m_ItemManager.AddItem(m_ItemName);
                 m_audioSource.PlayOneShot(m_sound);
-                Debug.Log(m_ItemName + " ‚ğŠl“¾‚µ‚Ü‚µ‚½");
+                Debug.Log(m_ItemName + " ã‚’ç²å¾—ã—ã¾ã—ãŸ");
             }
         }
 
-        // EƒL[‚ğ—£‚µ‚½‚ç
+        // Eã‚­ãƒ¼ã‚’é›¢ã—ãŸã‚‰
         if (isPlayerInRange && Input.GetKeyUp(KeyCode.E))
         {
             m_PlayerAnimator.SetBool("Push", false);
-            Destroy(gameObject, 0.7f); // 0.7•bŒã‚ÉŒ®ƒIƒuƒWƒFƒNƒg‚ğÁ‚·
+            Destroy(gameObject, 0.7f); // 0.7ç§’å¾Œã«éµã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ¶ˆã™
         }
     }
 
